@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 
-// properties addCoure is required, function called when Add clicked.
-class AddCourse extends Component {
+// properties addStudent is required, function called when Add clicked.
+class AddStudent extends Component {
       constructor(props) {
       super(props);
       this.state = {open: false, course:{ } };
@@ -24,12 +24,12 @@ class AddCourse extends Component {
     };
 
     handleChange = (event) => {
-      this.setState({course:{course_id: event.target.value}});
+      this.setState({student:{student_id: event.target.value}});
     }
 
   // Save course and close modal form
     handleAdd = () => {
-       this.props.addCourse(this.state.course);
+       this.props.addStudent(this.state.student);
        this.handleClose();
     }
 
@@ -37,12 +37,13 @@ class AddCourse extends Component {
       return (
           <div>
             <Button variant="outlined" color="primary" style={{margin: 10}} onClick={this.handleClickOpen}>
-              Add Course
+              Add Student
             </Button>
             <Dialog open={this.state.open} onClose={this.handleClose}>
-                <DialogTitle>Add Course</DialogTitle>
+                <DialogTitle>Add Student</DialogTitle>
                 <DialogContent  style={{paddingTop: 20}} >
-                  <TextField autoFocus fullWidth label="Course Id" name="course_id" onChange={this.handleChange}  /> 
+                  <TextField autoFocus fullWidth label="Student Id" name="student_id" onChange={this.handleChange}  />
+				  <TextField autoFocus fullWidth label="Student Name" name="student_name" onChange={this.handleChange}  /> 
                 </DialogContent>
                 <DialogActions>
                   <Button color="secondary" onClick={this.handleClose}>Cancel</Button>
@@ -55,8 +56,8 @@ class AddCourse extends Component {
 }
 
 // required property:  addCourse is a function to call to perform the Add action
-AddCourse.propTypes = {
-  addCourse : PropTypes.func.isRequired
+AddStudent.propTypes = {
+  addStudent : PropTypes.func.isRequired
 }
 
-export default AddCourse;
+export default AddStudent;
