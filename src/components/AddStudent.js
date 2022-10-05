@@ -32,9 +32,13 @@ class AddStudent extends Component {
       this.setState( {open:false} );
     };
 
+
+	/* enter input values into component state info on field change */
+
     handleChange = (event) => {
       this.setState({student:{student_email: event.target.value}});
 	  this.setState({student:{student_name: event.target.value}});
+	  // Initialize student registration status code to 0 (no holds)
   	  this.setState({student:{student_statusCode: 0}});
 
     }
@@ -44,6 +48,14 @@ class AddStudent extends Component {
        this.props.addStudent(this.state.student);
        this.handleClose();
     }
+	
+	
+	
+/* **** **** **** **** **** **** **** DAVDEV **** **** **** **** **** **** **** **** **** */
+	/*
+	 * fetch command needs a lot of help here.
+	 * 
+	*/
 	
 	// Add student
 	addStudent = (student) => {
@@ -76,7 +88,8 @@ class AddStudent extends Component {
 		})
 	} 
 	
-	
+/* **** **** **** **** **** **** **** END DAVDEV **** **** **** **** **** **** **** **** **** */
+
 
     render()  { 
 	/*
@@ -114,18 +127,18 @@ class AddStudent extends Component {
 	
       return (
           <div>
-            <Button variant="outlined" color="primary" style={{margin: 10}} onClick={this.handleClickOpen}>
+            <Button id="addStudentPopup" variant="outlined" color="primary" style={{margin: 10}} onClick={this.handleClickOpen}>
               Add Student
             </Button>
-			<Button component={Link} to={{pathname:'/'}} 
+			<Button id="home" component={Link} to={{pathname:'/'}} 
 				variant="outlined" color="primary" style={{margin: 10}}>
 			  Home
 			</Button>
             <Dialog open={this.state.open} onClose={this.handleClose}>
                 <DialogTitle>Add Student</DialogTitle>
                 <DialogContent  style={{paddingTop: 20}} >
-                  <TextField autoFocus fullWidth label="Student Email" name="student_email" onChange={this.handleChange}  />
-				  <TextField autoFocus fullWidth label="Student Name" name="student_name" onChange={this.handleChange}  /> 
+                  <TextField autoFocus fullWidth id="email" label="Student Email" name="student_email" onChange={this.handleChange}  />
+				  <TextField autoFocus fullWidth id="name" label="Student Name" name="student_name" onChange={this.handleChange}  /> 
                 </DialogContent>
                 <DialogActions>
                   <Button color="secondary" onClick={this.handleClose}>Cancel</Button>
